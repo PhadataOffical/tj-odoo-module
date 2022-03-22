@@ -10,18 +10,14 @@ AESIV = 's5IUgjA9h2DWmFS8'
 class AESCipher(object):
 
     def __init__(self):
-        '''
+        """"
         CBC加密需要一个十六位的key(密钥)和一个十六位iv(偏移量)
-        '''
+        """
         self.key = self.check_key(AESKEY)
         self.iv = self.check_key(AESIV)
-        # 数据块的大小  16位
         self.BS = 16
-        # CBC模式 相对安全 因为有偏移向量 iv 也是16位字节的
         self.mode = AES.MODE_CBC
-        # 填充函数 因为AES加密是一段一段加密的  每段都是BS位字节，不够的话是需要自己填充的
         self.pad = lambda s: pad(s.encode(), self.BS, style='pkcs7')
-        # 将填充的数据剔除
         self.unpad = lambda s: unpad(s, self.BS, style='pkcs7')
 
     def check_key(self, key):
@@ -57,15 +53,10 @@ class AESCipher(object):
     def encrypt(self, raw):
         raw = self.check_data(raw)
         raw = self.pad(raw)
-        # 定义初始化
         cipher = AES.new(self.key, self.mode, self.iv)
-        # 此处是将密文和iv一起 base64 解密的时候就可以根据这个iv来解密
         return base64.b64encode(cipher.encrypt(raw)).decode()
 
     def decrypt(self, enc):
-        # 先将密文进行base64解码
         enc = base64.b64decode(enc)
-        # 初始化自定义
         cipher = AES.new(self.key, self.mode, self.iv)
-        # 返回utf8格式的数据
         return self.unpad(cipher.decrypt(enc)).decode()

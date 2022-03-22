@@ -126,7 +126,7 @@ class CertController(http.Controller):
                 serialnumber, sealId)
             print(seal_sql_update)
             request.cr.execute(seal_sql_update)
-        # print(result.content)
+        print(result.content)
         return json.loads(result.content)
 
     @http.route('/api/v1/find-seal-status', type='json', auth='none')
@@ -231,7 +231,7 @@ class CertController(http.Controller):
         print(request.env.is_admin())
         if request.env.is_admin():
             # 返回所有
-            print(result.read())
+            # print(result.read())
             all = {
                 "code": "200000",
                 "message": "success",

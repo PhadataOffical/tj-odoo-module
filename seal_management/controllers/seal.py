@@ -70,7 +70,7 @@ class SealController(http.Controller):
         request.env.cr.execute(sql)
         seal_auth = request.cr.fetchall() or []
 
-        # print(seal_auth)
+        print(seal_auth)
         if seal_auth:
             print("已授权")
             return {
@@ -84,7 +84,7 @@ class SealController(http.Controller):
             "user_id": userId,
         }
         seal_auth_save = request.env['tj.seal.auth'].sudo().create(seal_auth_val)
-        # print(seal_auth_save)
+        print(seal_auth_save)
         print('添加授权完成')
         return {
             "code": "200000",
@@ -177,10 +177,10 @@ class SealController(http.Controller):
             (SELECT user_id FROM tj_seal_auth WHERE seal_id ={}) AND res_users.active=TRUE
             """.format(sealId)
 
-        print(sql)
+        # print(sql)
         request.cr.execute(sql)
         seal_users = request.cr.fetchall() or []
-        print(seal_users)
+        # print(seal_users)
         payload = []
         for rs in seal_users:
             user = {

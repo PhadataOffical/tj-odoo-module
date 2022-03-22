@@ -113,7 +113,7 @@ odoo.define('Sale.SignFormPage', function(require) {
                 return
             } else if (params.back && this.params.isrefresh) {
                 setTimeout(function() {
-                    $('.o_menu_brand').click()
+                    $('.o_menu_brand')[0].click()
                 }, 1000)
                 return
             }
@@ -256,7 +256,7 @@ odoo.define('Sale.SignFormPage', function(require) {
             const callBackUrl = window.location.origin + window.location.pathname + '?back=1' + window.location.hash
             window.location.href = callBackUrl
             setTimeout(() => {
-                $('.o_menu_brand').click()
+                $('.o_menu_brand')[0].click()
             }, 1000)
             return
         },

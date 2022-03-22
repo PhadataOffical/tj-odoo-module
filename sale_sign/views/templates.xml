@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="sign_form_assets_backend" inherit_id="web.assets_backend">
-        <xpath expr="." position="inside">
-            <link  rel="stylesheet"  type="text/scss" href="/sale_sign/static/src/css/sale_sign_form_page.scss"/>
-            <script type="text/javascript" src="/sale_sign/static/src/js/sale_sign_form_page.js"/>
-            <script type="text/javascript" src="/sale_sign/static/src/js/sale_sign_pdf_page.js"/>
-        </xpath>
-    </template>
+<!--    <template id="sign_form_assets_backend" inherit_id="web.assets_backend">-->
+<!--        <xpath expr="." position="inside">-->
+<!--            <link  rel="stylesheet"  type="text/scss" href="/sale_sign/static/src/css/sale_sign_form_page.scss"/>-->
+<!--            <script type="text/javascript" src="/sale_sign/static/src/js/sale_sign_form_page.js"/>-->
+<!--            <script type="text/javascript" src="/sale_sign/static/src/js/sale_sign_pdf_page.js"/>-->
+<!--        </xpath>-->
+<!--    </template>-->
 </odoo>

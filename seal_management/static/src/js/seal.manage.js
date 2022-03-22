@@ -186,8 +186,8 @@ odoo.define('tj.seal.manage', function(require) {
                 }, ],
                 $content: $(
                     QWeb.render('tj.seal.create', {
-                        companyName: self.companyInfo.companyName,
-                        companyDtid: self.companyInfo.dtid,
+                        companyName: '白丹测试企业1',
+                        companyDtid: 'dtid:12344',
                     })
                 ),
             }).open()

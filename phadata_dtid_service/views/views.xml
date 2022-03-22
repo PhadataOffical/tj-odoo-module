@@ -1,60 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
-    <!-- explicit list view definition -->
-<!--
-    <record model="ir.ui.view" id="phadata_dtid_service.list">
-      <field name="name">phadata_dtid_service list</field>
-      <field name="model">phadata_dtid_service.phadata_dtid_service</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
-        </tree>
-      </field>
-    </record>
--->
-
-    <!-- actions opening views on models -->
-<!--
-    <record model="ir.actions.act_window" id="phadata_dtid_service.action_window">
-      <field name="name">phadata_dtid_service window</field>
-      <field name="res_model">phadata_dtid_service.phadata_dtid_service</field>
-      <field name="view_mode">tree,form</field>
-    </record>
--->
-
-    <!-- server action to the one above -->
-<!--
-    <record model="ir.actions.server" id="phadata_dtid_service.action_server">
-      <field name="name">phadata_dtid_service server</field>
-      <field name="model_id" ref="model_phadata_dtid_service_phadata_dtid_service"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": model._name,
-        }
-      </field>
-    </record>
--->
-
-    <!-- Top menu item -->
-<!--
-    <menuitem name="phadata_dtid_service" id="phadata_dtid_service.menu_root"/>
--->
-    <!-- menu categories -->
-<!--
-    <menuitem name="Menu 1" id="phadata_dtid_service.menu_1" parent="phadata_dtid_service.menu_root"/>
-    <menuitem name="Menu 2" id="phadata_dtid_service.menu_2" parent="phadata_dtid_service.menu_root"/>
--->
-    <!-- actions -->
-<!--
-    <menuitem name="List" id="phadata_dtid_service.menu_1_list" parent="phadata_dtid_service.menu_1"
-              action="phadata_dtid_service.action_window"/>
-    <menuitem name="Server to list" id="phadata_dtid_service" parent="phadata_dtid_service.menu_2"
-              action="phadata_dtid_service.action_server"/>
--->
-  </data>
+  <menuitem name="DTID"
+        id="dtid_root_menu"
+        web_icon="dtid,static/description/icon.png"
+        sequence="50"/>
 </odoo>

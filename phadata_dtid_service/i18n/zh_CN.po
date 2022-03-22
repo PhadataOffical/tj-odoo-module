@@ -7,6 +7,12 @@
 msgid "DTID"
 msgstr "数字身份"
 
+#. module: web
+#. openerp-web
+#: code:addons/web/static/src/xml/base.xml:0
+#, python-format
+msgid "Identity"
+msgstr "数字身份"
 
 #. module: web
 #. openerp-web
@@ -36,6 +42,20 @@ msgstr "姓名"
 msgid "Faren Username"
 msgstr "法人姓名"
 
+#. module: web
+#. openerp-web
+#: code:addons/web/static/src/xml/base.xml:0
+#, python-format
+msgid "Identity Auth"
+msgstr "身份认证"
+
+#. module: web
+#. openerp-web
+#: code:addons/web/static/src/xml/base.xml:0
+#, python-format
+msgid "Business License"
+msgstr "电子营业执照"
+
 
 #. module: web
 #. openerp-web
@@ -43,17 +63,3 @@ msgstr "法人姓名"
 #, python-format
 msgid "Company Name"
 msgstr "企业名称"
-
-#. module: web
-#. openerp-web
-#: code:addons/web/static/src/xml/base.xml:0
-#, python-format
-msgid "Business License"
-msgstr "营业执照"
-
-#. module: web
-#. openerp-web
-#: code:addons/web/static/src/xml/base.xml:0
-#, python-format
-msgid "Company Code"
-msgstr "统一社会信用代码"

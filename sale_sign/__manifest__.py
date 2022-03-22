@@ -7,11 +7,11 @@
 ===================================================
 """,
     'depends': ['sale_management','seal_management','phadata_dtid_service'],
-    'qweb': [
-        'static/src/xml/sale_sign_pdf_page.xml',
-        'static/src/xml/sale_sign_form_page.xml',
-        "static/src/xml/contract_sign_page.xml"
-    ],
+    # 'qweb': [
+    #     'static/src/xml/sale_sign_pdf_page.xml',
+    #     'static/src/xml/sale_sign_form_page.xml',
+    #     "static/src/xml/contract_sign_page.xml"
+    # ],
     'data': [
         'security/ir.model.access.csv',
         'views/extends_views.xml',
@@ -21,6 +21,16 @@
     ],
     'external_dependencies': {
         'python': ['minio']
+    },
+    'assets': {
+        'web.assets_backend': [
+            'sale_sign/static/src/js/*',
+            'sale_sign/static/src/css/*',
+        ],
+        'web.assets_qweb': [
+            'sale_sign/static/src/xml/*',
+            'sale_sign/static/src/xml/**/*',
+        ],
     },
     'bootstrap': True,
     'application': True,

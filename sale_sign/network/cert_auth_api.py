@@ -4,6 +4,7 @@ import requests
 # API_BASE_URL = "https://ca-server.dev.tdaas.phadata.net/"
 API_BASE_URL = "https://ca.tdaas.dev.phadata.net/"
 
+
 def sealSignature(x: int, y: int, w: int, h: int, pdfUrl: str, identNo: str, uniqueCode: str, serialnumber: str, callBackUrl: str):
     datas = {
         'sealType': "coordinate",

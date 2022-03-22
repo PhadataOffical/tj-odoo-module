@@ -15,6 +15,7 @@ def scan_code_result(qrId):
     resp = requests.get(url=SCAN_CODE_RESULT_API, params={'qrId': qrId})
     return resp
 
+
 def get_license_b64(imageurl) -> str:
     resp = requests.get(url=imageurl)
     result = resp.json()

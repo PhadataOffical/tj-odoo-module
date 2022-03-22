@@ -16,15 +16,22 @@
     'category': 'DTID',
     'version': '0.1',
 
-    'depends': ['base'],
+    'depends': [],
 
     'data': [
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
     ],
-    'qweb': [
-        'static/src/xml/dtid_menu_template.xml',
-        'static/src/xml/dtid_page.xml'
-    ],
+     'assets': {
+        'web.assets_backend': [
+            'phadata_dtid_service/static/src/js/user_menu.js',
+        ],
+        'web.assets_common': [
+        ],
+        'web.assets_qweb': [
+            'phadata_dtid_service/static/src/xml/**/*',
+        ],
+    },
+    'license': 'LGPL-3',
 }
