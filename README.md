@@ -52,7 +52,7 @@
 
    
 
-3. Install Odoo14.0
+3. Install Odoo15.0
 
    If `Python 3` is already installed, make sure that the version is `3.6` or above, as previous versions are not compatible with Odoo.
 
@@ -75,7 +75,7 @@
    `Download/Git Odoo14`
 
    ```shell
-   $ git clone -b 14.0 https://github.com/odoo/odoo.git
+   $ git clone -b 15.0 https://github.com/odoo/odoo.git
    ```
 
    `Dependencies`
@@ -126,5 +126,5 @@
 
 #### Notes
 
-[Odoo Documentation — Odoo 14.0 documentation](https://www.odoo.com/documentation/14.0/)
+[Odoo Documentation — Odoo 15.0 documentation](https://www.odoo.com/documentation/15.0/)
 
