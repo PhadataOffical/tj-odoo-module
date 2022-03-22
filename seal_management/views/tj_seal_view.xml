@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="seal_backend" name="seal assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/seal_management/static/src/css/tjmain.css"/>
+        </xpath>
+    </template>
+    <record id="tj_seal_manage_view_list" model="ir.ui.view">
+        <field name="name">TJ-印章</field>
+        <field name="model">tj.seal.manage</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="seal_model_url" widget="image" class="tjseal_image"/>
+                <field name="seal_name"/>
+                <field name="seal_type_name"/>
+                <field name="serialnumber"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="tj_seal_manage_view_form" model="ir.ui.view">
+        <field name="name">TJ-印章</field>
+        <field name="model">tj.seal.manage</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="seal_name"/>
+                        <field name="seal_type_name"/>
+                        <field name="seal_model_url" widget="image" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="tj_seal_manage_view_search" model="ir.ui.view">
+        <field name="name">TJ-印章</field>
+        <field name="model">tj.seal.manage</field>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="status" domain="[('status','=',0)]"/>
+                <group string="group by">
+                    <filter name="status" string="状态" context="{'group_by': 'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="view_tj_seal_kanban">
+        <field name="name">印章看板</field>
+        <field name="model">tj.seal.manage</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" sample="1">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div class="o_kanban_record_top mb16">
+                                <field name="seal_model_url" widget="image" class="tjseal_image"/>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left text-muted">
+                                    <field name="serialnumber"/>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="seal_name"/>
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <field name="seal_type_name"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!--    <record id="tj_seal_action_view_order_kanban" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="view_tj_seal_kanban"/>
+            <field name="act_window_id" ref="tj_seal_manage_model_action_window"/>
+        </record>-->
+
+    <record id="tj_seal_manage_model_action_window" model="ir.actions.act_window">
+        <field name="name">TJ-印章</field>
+        <field name="res_model">tj.seal.manage</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+</odoo>

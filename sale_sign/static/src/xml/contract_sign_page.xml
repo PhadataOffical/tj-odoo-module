@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template_contract_sign" xml:space="preserve">
+    <!--  ca转回loading -->
+    <t t-name="tj.ca.sign.callback.page">
+        <div class="container-fluid tj-ca-result-container" style="height:50vh;text-align: center;padding:20%;">
+            <div  t-if="isloading">
+                <div class="spinner-border" style="width: 4rem; height: 4rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div style="margin-top:20px">正在查询签署结果，请稍后...</div>
+            </div>
+            <div t-if="isloading===false">
+                <button type="button" class="btn btn-success btn-lg">签署成功</button>
+                <p style="text-align:center;font-size:16px;margin:20px 0px;" >合约签署成功,5s后页面自动跳离，您也可以点击按钮离开</p>
+                <div style="margin-top:20px">
+                    <button type="button"  class="btn btn-primary tj-back-btn">页面跳回</button>
+                </div>
+            </div>
+        </div>
+    </t>
+    <!-- 签署页面 -->
+    <div role="separator" t-name="ContractSign.page">
+        <div class="container-fluid">
+            <div style="width:100%;">
+                <div class="tj-contract-sign-setpos w-full clearfix" >
+                    <div t-if="seals.length!==0" class="float-left">
+                        <button type="button" class="btn btn-primary dosign-btn">签 署</button>
+                    </div>
+                    <div class="d-flex float-right">
+                        <div>
+                            <b>签署位置设置</b>
+                        </div>
+                        <div class="c-t-pos-item d-flex">
+                            <span>上：</span>
+                            <input type="number"  min="0" max="100"  data-type="top" class="form-control  tj-seal-pos-control" value="60"/>
+                        </div>
+                        <div  class="c-t-pos-item d-flex">
+                            <span>左：</span>
+                            <input type="number" min="0" max="100" data-type="left" class="form-control tj-seal-pos-control" value="70"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 tj-contract-sign-left-aside">
+                        <h3>印章列表
+                            <span>点击印章添加到文件中</span>
+                        </h3>
+                        <div class="d-flex flex-wrap">
+                            <t t-foreach="seals" t-as="seal">
+                                <div class="tj-contract-sign-seal" t-att-data-id="seal.id" t-att-data-serialnumber="seal.serialnumber" t-att-data-sealmodelurl="getSealUrl(seal.seal_model_url)"  >
+                                    <img  draggable="true"  t-att-src="getSealUrl(seal.seal_model_url)" />
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="col-md-9" id="count">
+                        <div class="w-full position-relative">
+                            <div class="tj-contract-sign-img-item">
+                                <iframe id="tj_c_sign_web" style="width:820px;height:1200px;transform: scale(0.703) translateX(-175px) translateY(-254px);" t-att-src="htmlurl"/>
+                                <!-- <embed id="tj_c_sign_web" style="width:100%;height:900px" t-att-src="pdfurl"/> -->
+                            </div>
+                            <div class="tj-sign-seals-contrainer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 拖拽到页面中的印章模板 -->
+    <div t-name="ContractSign.seal">
+        <t t-if="selectedSeal" >
+            <div class="tj-contract-sign-seal-selected"  t-att-data-id="selectedSeal.id" t-att-data-serialnumber="selectedSeal.serialnumber" >
+                <img  draggable="false"  t-att-src="selectedSeal.seal_model_url" />
+            </div>
+        </t>
+    </div>
+</templates>

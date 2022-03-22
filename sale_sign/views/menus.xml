@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<!--    <menuitem id="menu_root" sequence="20" name="电子签章" action="sign_action_window"/>-->
+<!--    <menuitem id="menu_sign" sequence="100" parent="menu_root" name="签章管理" action="sign_action_window"/>-->
+<!--    <menuitem id="menu_page" sequence="100" parent="menu_root" name="签章页面" action="sign_form_action_page"/>-->
+
+</odoo>

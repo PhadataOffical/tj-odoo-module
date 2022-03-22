@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="seal_backend" name="seal assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/seal_management/static/src/css/tjmain.css"/>
+            <script type="text/javascript" src="/seal_management/static/src/js/seal-draw.js"></script>
+            <script type="text/javascript" src="/seal_management/static/src/js/seal.manage.js"/>
+        </xpath>
+    </template>
+</odoo>

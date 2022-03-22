@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="seal.card.list">
+        <div style="padding: 20px; background-color: #FFF">
+        </div>
+    </t>
+    <!--  ca转回loading -->
+    <t t-name="tj.ca.callback.page">
+        <div class="container-fluid tj-ca-result-container" style="height:50vh;text-align: center;padding:20%;">
+            <div  t-if="isloading">
+                <div class="spinner-border" style="width: 4rem; height: 4rem;" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div style="margin-top:20px">正在查询证书，请稍后...</div>
+            </div>
+            <div t-if="isloading===false">
+                <button type="button" class="btn btn-success">申请数字证书成功</button>
+                <p style="text-align:center">
+                    <b>证书序列号：</b>
+                    <t t-esc="serialnumber"/>
+                </p>
+                <p style="text-align:center;font-size:16px;" >您的印章和数字证书的绑定申请已经提交成功，将在一个工作日内返回审核结果，请耐心等待...</p>
+                <div style="margin-top:20px">
+                    <button type="button" class="btn btn-primary tj-catoseallist-btn">页面跳回</button>
+                </div>
+            </div>
+        </div>
+    </t>
+    <!-- 印章列表 -->
+    <t t-name="tj.seal.card.item">
+        <div style="max-width:1520px;margin: 0 auto;">
+            <div t-if="seals.length===0" class="clearfix" style="text-align:center; font-size:18px;padding: 20px;">
+                暂无印章
+            </div>
+            <p t-if="!isDtid" style="text-align:center; font-size:16px;padding: 20px;color:red">您还没有开通数字身份，请开通后再添加印章</p>
+            <div t-if="is_admin" class="clearfix">
+                <button t-if="isDtid" class="btn btn-primary float-right  btn-lg tj-seal-create">创建印章</button>
+            </div>
+            <div class="row" style="padding: 20px; background-color: #FFF">
+                <t t-foreach="seals" t-as="seal">
+                    <div class="tj-seals-item card col-lg-2  col-md-3 col-sm-4 position-relative" t-att-status="seal.status" t-att-data-id="seal.id" t-att-data-serialnumber="seal.serialnumber" t-att-data-sealmodelurl="getSealUrl(seal.seal_model_url)"  >
+                        <img  draggable="false"  t-att-src="getSealUrl(seal.seal_model_url)" />
+                        <!--  0: 不可用 1:待审核 2:审核通过 3:审核不通过  -->
+                        <button  t-if="seal.status===0" type="button" class="btn  btn-outline-dark tj-seal-card-status">
+                            不可用
+                        </button>
+                        <button  t-if="seal.status===1" type="button" class="btn  btn-outline-dark tj-seal-card-status">
+                            待审核
+                        </button>
+                        <button  t-if="seal.status===2" type="button" class="btn btn-outline-success tj-seal-card-status">
+                            <t t-esc="seal.seal_type_name"/>
+                        </button>
+                        <button  t-if="seal.status===3" type="button" class="btn btn-outline-danger tj-seal-card-status">
+                           审核不通过
+                        </button>
+                        <!-- <div class="card-body  d-flex justify-content-between"> -->
+                        <div  class="card-body text-center">
+                            <div t-if="is_admin">
+                                <button t-if="seal.status===2" t-att-data-sid="seal.id" class="btn btn-primary  btn-lg tj-seal-auth">授权管理</button>
+                                <button  t-if="seal.status===0" t-att-data-sid="seal.id" class="btn btn-primary  btn-lg tj-seal-bingca">去激活</button>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+    <!-- 创建印章的页面 -->
+    <t t-name="tj.seal.create">
+        <div>
+            <form  name="tj_create_seal_form" id="tj_create_seal_form">
+                <!-- <div class="form-group">
+                <label for="exampleInputEmail1">企业名称</label>
+                <input type="text" name="companyName" t-att-value="companyName" required="true" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+            </div> -->
+                <div class="form-group">
+                    <label for="exampleInputPassword1">印章名称</label>
+                    <input type="text" name="seal_name"  t-att-value="companyName" required="true" class="form-control" id="exampleInputPassword1"/>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">印章类型</label>
+                    <select name="seal_type_name" class="form-control">
+                        <option>公章</option>
+                        <option>法定代表人章</option>
+                        <option>合同专用章</option>
+                        <option>财务专用章</option>
+                        <option>通用印章</option>
+                    </select>
+                </div>
+                <div class="form-group form-check">
+                    <input name="tjAgreeUse" type="checkbox" class="form-check-input" id="exampleCheck1"/>
+                    <label class="form-check-label" for="exampleCheck1">勾选代表同意使用贵州CA生成电子印章，并愿意承担相关的法律责任。</label>
+                </div>
+            </form>
+            <div  class="position-absolute canvas-wrap">
+                <canvas id="seal_canvas"></canvas>
+            </div>
+        </div>
+    </t>
+    <t t-name="tj.seal.auth.manager.page">
+        <div role="tabpanel">
+            <!-- List group -->
+            <div  t-if="isauthtab" id="myList" role="tablist">
+                <button class="btn btn-primary btn-change-sealauth-tab" data-type="isauth" t-att-data-sid="sealid">已授权</button>
+                <button class="btn btn-default btn-change-sealauth-tab" data-type="notauth" t-att-data-sid="sealid">未授权</button>
+            </div>
+            <div t-if="isauthtab===false" id="myList" role="tablist">
+                <button class="btn btn-default btn-change-sealauth-tab" data-type="isauth" t-att-data-sid="sealid">已授权</button>
+                <button class="btn btn-primary btn-change-sealauth-tab" data-type="notauth" t-att-data-sid="sealid">未授权</button>
+            </div>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">account</th>
+                                <th scope="col">username</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="userlists" t-as='user'>
+                                <tr>
+                                    <th scope="row">
+                                        <t t-esc="user.account"/>
+                                    </th>
+                                    <td scope="row">
+                                        <t t-esc="user.name"/>
+                                    </td>
+                                    <td scope="row">
+                                        <button  t-if="isauthtab" t-att-data-uid="user.id" t-att-data-sid="sealid" data-type="cancel" class="btn btn-primary tj-btn-changeauth btn-sm" >取消授权</button>
+                                        <button  t-if="isauthtab===false" t-att-data-uid="user.id" t-att-data-sid="sealid" data-type="add" class="btn tj-btn-changeauth btn-primary btn-sm" >授权</button>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

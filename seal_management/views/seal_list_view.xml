@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="tj_seal_manage_model_action_window" model="ir.actions.client">
+        <field name="name">印章</field>
+        <field name="tag">tj.seal.manage</field>
+    </record>
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<template>
+    <t t-name="SaleSignPdfPage">
+        <div class="container">
+            <h1> 签署文档 </h1>
+        </div>
+    </t>
+    <t t-name="SaleSignPadEmbed">
+        <embed style="width:100%;height:900px;" t-att-src="pdfurl"/>
+    </t>
+</template>

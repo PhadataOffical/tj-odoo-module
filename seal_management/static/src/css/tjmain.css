@@ -1,0 +1,34 @@
+.tjseal_image {
+    width: 120px !important;
+}
+
+.tj-seals-item {
+    margin-bottom: 20px;
+    margin-left: 20px;
+    padding-top: 20px;
+}
+
+#seal_canvas {
+    width: 127.5px;
+    height: 127.5px;
+}
+
+.tj-ca-result-container {
+    font-size: 16px;
+}
+
+
+/* -1:查询所有 0: 不可用 1:待审核 2:审核通过 3:审核不通过 */
+
+.tj-seal-card-status {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+
+/* 创建印章的内部 */
+
+.canvas-wrap {
+    top: -200px;
+}

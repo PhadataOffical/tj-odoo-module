@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- <menuitem name="TJ-印章管理" id="tj_seal_model_menu" sequence="11"/> -->
+    <menuitem name="印章管理"
+              id="tj_seal_manage_menu"
+               sequence="11"
+              action="tj_seal_manage_model_action_window"/>
+</odoo>

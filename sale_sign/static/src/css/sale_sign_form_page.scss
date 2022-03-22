@@ -1,0 +1,59 @@
+img {
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.w-full {
+    width: 100%
+}
+
+.tj-contract-sign-setpos {
+    margin-top: 10px;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 20px;
+    .c-t-pos-item {
+        width: 100px;
+        margin-left: 20px;
+        .form-control {
+            width: 80px
+        }
+    }
+}
+
+.tj-contract-sign-left-aside {
+    border-right: 4px solid rgba(0, 0, 0, 0.5);
+    h3 {
+        margin-bottom: 10px;
+        span {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 12px;
+            margin-left: 8px;
+        }
+    }
+    .tj-contract-sign-seal {
+        width: 127.5px;
+        height: 127.5px;
+    }
+}
+
+.tj-contract-sign-img-item {
+    margin: 0px auto 10px;
+    // 有两个像素的边框
+    width: 577px;
+    // border: 1px solid rgba(0, 0, 0, 0.1);
+    img {
+        width: 575px;
+    }
+}
+
+// 拖拽到页面中的印章
+.tj-sign-seals-contrainer {
+    .tj-contract-sign-seal-selected {
+        width: 127.5px;
+        height: 127.5px;
+        position: absolute;
+        top: 60%;
+        left: 70%;
+    }
+}

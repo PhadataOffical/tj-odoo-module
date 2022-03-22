@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <t t-extend="UserMenu.Actions">
+        <t t-jquery=".dropdown-divider" t-operation="after">
+            <a role="menuitem" href="#" data-menu="dtid" class="dropdown-item d-none d-md-inline-block">DTID</a>
+        </t>
+    </t>
+</template>

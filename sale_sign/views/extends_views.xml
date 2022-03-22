@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="sale_view_order_tree_inherited" model="ir.ui.view">
+        <field name="name">销售 - 签署</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <field name="tj_signed_status" string="签署状态"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_view_order_form_inherited" model="ir.ui.view">
+        <field name="name">销售 - 签署</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="." position="inside">
+                <field name="tj_signed_id" string="签署文档" invisible="1"/>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_sign" type="object" string="电子签章"
+                        class="btn-primary" attrs="{'invisible': ['|', ('state', '=', 'draft'), ('tj_signed_id', '!=', False)]}"/>
+            </xpath>
+            <xpath expr="//group[@name='order_details']" position="inside">
+                <field name="tj_signed_status" string="签署状态"/>
+                <field name="tj_serial_number" attrs="{'invisible': [('tj_signed_id', '=', False)]}"/>
+                <button name="action_pdf" type="object" string="查看签章"
+                        class="btn-primary"
+                        attrs="{'invisible': [('tj_signed_id', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="电子签章" attrs="{'invisible': [('tj_signed_id', '=', False)]}">
+                        <field name="tj_signed_id" mode="form">
+                            <form>
+                                <h1>
+                                    <field name="name" string="标题"/>
+                                </h1>
+                                <group>
+                                    <field name="order_id" string="签署订单"/>
+                                    <field name="user_id" string="签署人"/>
+                                    <field name="status" string="状态"/>
+                                    <field name="signed_on" string="签署时间"/>
+                                </group>
+                            </form>
+                        </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

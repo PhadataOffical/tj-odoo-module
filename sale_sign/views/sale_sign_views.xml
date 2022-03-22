@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="sale_sign_form">
+        <field name="name">电子签章 - 表单</field>
+        <field name="model">sale.sign</field>
+        <field name="arch" type="xml">
+            <form edit='false' create='false' delete="false" >
+                <sheet>
+                    <h1>
+                        <field name="name" string="标题"/>
+                    </h1>
+                    <group>
+                        <field name="order_id" string="签署订单"/>
+                        <field name="user_id" string="签署人"/>
+                        <field name="status" string="状态"/>
+                        <field name="signed_on" string="签署时间"/>
+                        <button name="action_pdf" type="object" string="查看签章"
+                                class="btn-primary"
+                                attrs="{'invisible': [('status', '!=', 'signed')]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_sign_tree">
+        <field name="name">电子签章 - 列表</field>
+        <field name="model">sale.sign</field>
+        <field name="arch" type="xml">
+            <tree edit='false' create='false' delete="false" >
+                <field name="name" string="标题"/>
+                <field name="order_id" string="签署订单"/>
+                <field name="user_id" string="签署人"/>
+                <field name="status" string="状态"/>
+                <field name="signed_on" string="签署时间"/>
+            </tree>
+        </field>
+    </record>
+
+   <record id="sign_action_window" model="ir.actions.act_window">
+        <field name="name">电子签章</field>
+        <field name="res_model">sale.sign</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('sale_sign_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('sale_sign_form')})]"/>
+    </record>
+
+
+    <record id="sign_form_action_page" model="ir.actions.client">
+        <field name="name">电子签章</field>
+        <field name="tag">sale.sign.form.page</field>
+    </record>
+
+    <record id="sign_pdf_action_page" model="ir.actions.client">
+        <field name="name">签章文档</field>
+        <field name="tag">sale.sign.pdf.page</field>
+    </record>
+
+</odoo>
